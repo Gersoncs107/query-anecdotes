@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 
@@ -13,6 +14,16 @@ const App = () => {
       votes: 0,
     },
   ]
+
+  const result = useQuery({
+    queryKey: ['anecdotes'],
+    queryFn: () =>
+      fetch('http://localhost:3001/anecdotes').then((res) => res.json()),
+  })
+
+  if (result.isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
