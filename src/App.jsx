@@ -11,13 +11,7 @@ const App = () => {
 
   const result = useQuery({
     queryKey: ['anecdotes'],
-    queryFn: async () => {
-      const response = await fetch('http://localhost:3001/anecdotes')
-      if (!response.ok) {
-        throw new Error('Failed to fetch anecdotes')
-      }
-      return response.json()
-    },
+    queryFn: getAll,
   })
 
   if (result.isLoading) {
