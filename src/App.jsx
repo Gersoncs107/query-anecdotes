@@ -7,23 +7,23 @@ const App = () => {
     console.log('vote')
   }
 
-  const anecdotes = [
-    {
-      content: 'If it hurts, do it more often',
-      id: '47145',
-      votes: 0,
-    },
-  ]
 
   const result = useQuery({
     queryKey: ['anecdotes'],
-    queryFn: () =>
-      fetch('http://localhost:3001/anecdotes').then((res) => res.json()),
+    queryFn: async () => {
+      const response = await fetch('http://localhost:3001/anecdotes')
+      if (!response.ok) {
+        throw new Error('Failed to fetch anecdotes')
+      }
+      return response.json()
+    },
   })
 
   if (result.isLoading) {
     return <div>Loading...</div>
   }
+  
+  const anecdotes = result.data
 
   return (
     <div>
