@@ -8,7 +8,7 @@ export const getAll = async () => {
     return response.json()
 }
 
-export const createAnecdode = async (content) => {
+export const createAnecdote = async (content) => {
     const options = {
         method: 'POST',
         headers: {
