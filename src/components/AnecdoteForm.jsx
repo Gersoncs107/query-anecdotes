@@ -1,6 +1,11 @@
+import { useMutation } from "@tanstack/react-query"
 import { createAnecdode } from "../requests"
 
 const AnecdoteForm = () => {
+  const newAnecdoteMutation = useMutation({
+    mutationFn: createAnecdode,
+  })
+
   const onCreate = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
