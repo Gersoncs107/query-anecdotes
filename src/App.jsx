@@ -19,9 +19,9 @@ const App = () => {
     return <div>Loading...</div>
   }
   
-  if (result.isError {
+  if (result.isError) {
     return <div>Anecdote service not available due to problems in the server</div>
-  })
+  }
 
   const anecdotes = result.data
 
