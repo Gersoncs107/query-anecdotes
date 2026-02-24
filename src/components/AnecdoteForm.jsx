@@ -10,7 +10,7 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    createAnecdode(content)
+    newAnecdoteMutation.mutate(content)
   }
 
   return (

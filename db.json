@@ -39,6 +39,11 @@
       "content": "NEW ANECDOTE WITH QUERY THUNK",
       "votes": 0,
       "id": "6VrNO1x"
+    },
+    {
+      "content": "NEW ANECDOTE USING MUTATION",
+      "votes": 0,
+      "id": "BGmcj-B"
     }
   ]
 }
