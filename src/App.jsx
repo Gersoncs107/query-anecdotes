@@ -1,11 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
-import { getAll } from './requests'
+import { useQuery, useMutation } from '@tanstack/react-query'
+import { getAll, updateAnecdote } from './requests'
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 
 const App = () => {
+  const queryClient = useQueryClient()
   const handleVote = (anecdote) => {
-    console.log('vote')
+    
   }
 
 
