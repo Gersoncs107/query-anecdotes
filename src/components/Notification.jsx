@@ -1,3 +1,5 @@
+import { useContext } from "react"
+
 const Notification = () => {
   const style = {
     border: 'solid',
