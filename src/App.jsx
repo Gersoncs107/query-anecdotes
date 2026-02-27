@@ -3,9 +3,11 @@ import { getAll, updateAnecdote } from './requests'
 
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
+import { useNotification } from './CounterContext'
 
 const App = () => {
   const queryClient = useQueryClient()
+  const notify = useNotification()
   
   const updateAnecdoteMutation = useMutation({
     mutationFn: updateAnecdote,
@@ -16,7 +18,11 @@ const App = () => {
 
   const handleVote = (anecdote) => {
     const updatedAnecdote = { ...anecdote, votes: anecdote.votes + 1 }
-    updateAnecdoteMutation.mutate(updatedAnecdote)
+    updateAnecdoteMutation.mutate(updatedAnecdote, {
+      onSuccess: () => {
+        notify(`You voted '${anecdote.content}'`)
+      }
+    })
   }
 
   const result = useQuery({
