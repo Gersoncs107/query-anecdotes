@@ -13,4 +13,14 @@ const nottificationReducer = (state, action) => {
   }
 }
 
+export const CounterContextProvider = (children) => {
+    const [notification, dispatch] = useReducer(nottificationReducer, null)
+
+    return (
+      <CounterContext.Provider value={[notification, dispatch]}>
+        {children}
+      </CounterContext.Provider>
+    )
+}
+
 export default CounterContext
