@@ -19,8 +19,8 @@ const AnecdoteForm = () => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     newAnecdoteMutation.mutate(content, {
-      onError: () => {
-        notify('Failed to create anecdote. Please try again.')
+      onError: (error) => {
+        notify(error.message)
       }
     })
   }
