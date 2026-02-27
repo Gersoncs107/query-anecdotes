@@ -1,13 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createAnecdote } from "../requests"
+import { useNotification } from "../CounterContext"
 
 const AnecdoteForm = () => {
   const queryClient = useQueryClient()
+  const notify = useNotification()
 
   const newAnecdoteMutation = useMutation({
     mutationFn: createAnecdote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['anecdotes'] })
+      notify('New anecdote created successfully!')
     }
   })
 
@@ -15,7 +18,11 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    newAnecdoteMutation.mutate(content)
+    newAnecdoteMutation.mutate(content, {
+      onError: () => {
+        notify('Failed to create anecdote. Please try again.')
+      }
+    })
   }
 
   return (
